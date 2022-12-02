@@ -9,6 +9,9 @@ Coding Quiz Challenge
 ## Description 
 This webpage presents a timed coding quiz.
 
+Features Include:
+- Fill in features here...
+
 ## Visuals 
 
 The following is a screenshot of the full webpage:
