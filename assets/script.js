@@ -10,28 +10,31 @@ go back or clear high scores
 var questionBank = [{
     question: "Question Text",
     choices: ["O1","O2","O3","O4"],
-    correct: 1
+    answer: 1
 }, {    
     question: "Question Text",
     choices: ["O1","O2","O3","O4"],
-    correct: 2
+    answer: 2
 }, {    
     question: "Question Text",
     choices: ["O1","O2","O3","O4"],
-    correct: 3
+    answer: 3
 }, {    
     question: "Question Text",
     choices: ["O1","O2","O3","O4"],
-    correct: 4
+    answer: 4
 }, {    
     question: "Question Text",
     choices: ["O1","O2","O3","O4"],
-    correct: 5
+    answer: 5
 }];
 
 // Variables
 var timeEl = document.querySelector(".timer");
-var startQuizBtn = document.querySelector("#startQuiz");
+var titleScreenEl = document.querySelector("#title-screen");
+var startQuizBtnEl = document.querySelector("#startQuiz");
+var quizSectionEl = document.querySelector("#quiz-section");
+var questionsEl = document.querySelector("#questions");
 
 
 // Function for timer countdown.
@@ -51,4 +54,4 @@ function beginQuiz(){
 }
 
 // Add event listener to startQuiz button
-startQuizBtn.addEventListener("click", beginQuiz);
+startQuizBtnEl.addEventListener("click", beginQuiz);
