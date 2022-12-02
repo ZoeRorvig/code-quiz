@@ -8,6 +8,7 @@ go back or clear high scores
 
 // Variables
 var timeEl = document.querySelector(".timer");
+var startQuizBtn = document.querySelector("#startQuiz");
 var secondsRemain = 75;
 
 function countdownTimer() {
@@ -20,4 +21,10 @@ function countdownTimer() {
     }, 100); 
 }
 
-countdownTimer();
+function beginQuiz(){
+    console.log("you clicked me!");
+    countdownTimer();
+}
+
+// Add event listener to generate button
+startQuizBtn.addEventListener("click", beginQuiz);
