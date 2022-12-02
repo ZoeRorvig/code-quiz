@@ -6,6 +6,29 @@ submit scores
 go back or clear high scores
 */
 
+// Questions
+var questionBank = [{
+    question: "Question Text",
+    choices: ["O1","O2","O3","O4"],
+    correct: 1
+}, {    
+    question: "Question Text",
+    choices: ["O1","O2","O3","O4"],
+    correct: 2
+}, {    
+    question: "Question Text",
+    choices: ["O1","O2","O3","O4"],
+    correct: 3
+}, {    
+    question: "Question Text",
+    choices: ["O1","O2","O3","O4"],
+    correct: 4
+}, {    
+    question: "Question Text",
+    choices: ["O1","O2","O3","O4"],
+    correct: 5
+}];
+
 // Variables
 var timeEl = document.querySelector(".timer");
 var startQuizBtn = document.querySelector("#startQuiz");
@@ -24,7 +47,6 @@ function countdownTimer() {
 }
 
 function beginQuiz(){
-    console.log("you clicked me!");
     countdownTimer();
 }
 
