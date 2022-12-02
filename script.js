@@ -17,7 +17,7 @@ function countdownTimer() {
       if(secondsRemain === 0) {
         clearInterval(timerInterval);
       }
-    }, 1000); 
+    }, 100); 
 }
 
 countdownTimer();
