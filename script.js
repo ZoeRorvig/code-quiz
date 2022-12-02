@@ -9,9 +9,11 @@ go back or clear high scores
 // Variables
 var timeEl = document.querySelector(".timer");
 var startQuizBtn = document.querySelector("#startQuiz");
-var secondsRemain = 75;
 
+
+// Function for timer countdown.
 function countdownTimer() {
+    var secondsRemain = 75;
     var timerInterval = setInterval(function() {
       secondsRemain--; 
       timeEl.textContent = "Timer: " + secondsRemain;
@@ -26,5 +28,5 @@ function beginQuiz(){
     countdownTimer();
 }
 
-// Add event listener to generate button
+// Add event listener to startQuiz button
 startQuizBtn.addEventListener("click", beginQuiz);
