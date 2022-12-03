@@ -6,6 +6,13 @@ submit scores
 go back or clear high scores
 */
 
+// Variables
+var click = 0;
+var timeEl = document.querySelector(".timer");
+var titleScreenEl = document.querySelector("#title-screen");
+var startQuizBtnEl = document.querySelector("#startQuiz");
+var quizSectionEl = document.querySelector(".quiz-section");
+
 // Questions
 var questionBank = [{
     question: "Question Text",
@@ -29,13 +36,10 @@ var questionBank = [{
     answer: 5
 }];
 
-// Variables
-var timeEl = document.querySelector(".timer");
-var titleScreenEl = document.querySelector("#title-screen");
-var startQuizBtnEl = document.querySelector("#startQuiz");
-var quizSectionEl = document.querySelector("#quiz-section");
-var questionsEl = document.querySelector("#questions");
-
+// Function for showing the questions
+var displayQuestions = function() {
+    quizSectionEl.querySelector('h2').textContent = questionBank[click].question;
+};
 
 // Function for timer countdown.
 function countdownTimer() {
@@ -51,6 +55,7 @@ function countdownTimer() {
 
 function beginQuiz(){
     countdownTimer();
+    displayQuestions();
 }
 
 // Add event listener to startQuiz button
