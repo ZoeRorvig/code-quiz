@@ -56,7 +56,9 @@ var questionCheck = function(){
         feedbackEl.querySelector("h3").textContent = "Correct";
     } else if (check === false){
         feedbackEl.querySelector("h3").textContent = "Wrong";
-        secondsRemain -= 10;
+        secondsRemain -= 5;
+        timeEl.textContent = "Timer: " + secondsRemain;
+        console.log(secondsRemain);
     }
 };
 
@@ -70,7 +72,6 @@ var nextQuestion = function(event){
         quizSectionEl.dataset.index = click;
     } else{
         quizSectionEl.innerHTML = null;
-        timeEl.innerHTML = null;
         feedbackEl.innerHTML =null;
         score = secondsRemain;
         console.log(score);
@@ -85,11 +86,9 @@ var nextQuestion = function(event){
 var countdownTimer = function() {
     timerInterval = setInterval(function() {
       secondsRemain--; 
-      console.log(secondsRemain);
       timeEl.textContent = "Timer: " + secondsRemain;
       if(secondsRemain === 0) {
         clearInterval(timerInterval);
-        timeEl.innerHTML = null;
         quizSectionEl.innerHTML = null;
         feedbackEl.innerHTML =null;
       }
