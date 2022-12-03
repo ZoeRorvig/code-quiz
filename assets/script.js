@@ -1,11 +1,3 @@
-/*
-start quiz
-question next
-answer select 
-submit scores
-go back or clear high scores
-*/
-
 // Variables
 var click = 0;
 var timeEl = document.querySelector(".timer");
@@ -16,29 +8,34 @@ var quizSectionEl = document.querySelector(".quiz-section");
 // Questions
 var questionBank = [{
     question: "Question Text",
-    choices: ["O1","O2","O3","O4"],
+    options: ["O1","O2","O3","O4"],
     answer: 1
 }, {    
     question: "Question Text",
-    choices: ["O1","O2","O3","O4"],
+    options: ["O1","O2","O3","O4"],
     answer: 2
 }, {    
     question: "Question Text",
-    choices: ["O1","O2","O3","O4"],
+    options: ["O1","O2","O3","O4"],
     answer: 3
 }, {    
     question: "Question Text",
-    choices: ["O1","O2","O3","O4"],
+    options: ["O1","O2","O3","O4"],
     answer: 4
 }, {    
     question: "Question Text",
-    choices: ["O1","O2","O3","O4"],
+    options: ["O1","O2","O3","O4"],
     answer: 5
 }];
 
 // Function for showing the questions
-var displayQuestions = function() {
-    quizSectionEl.querySelector('h2').textContent = questionBank[click].question;
+var questionDisplay = function() {
+    quizSectionEl.querySelector("h2").textContent = questionBank[click].question;
+    for (var questionOptions of questionBank[click].options) {
+        var buttonEl = document.createElement("button");
+        buttonEl.textContent = questionOptions;
+        quizSectionEl.appendChild(buttonEl);
+    }
 };
 
 // Function for timer countdown.
@@ -51,11 +48,11 @@ function countdownTimer() {
         clearInterval(timerInterval);
       }
     }, 100); 
-}
+};
 
 function beginQuiz(){
     countdownTimer();
-    displayQuestions();
+    questionDisplay();
 }
 
 // Add event listener to startQuiz button
