@@ -1,7 +1,7 @@
 // Variables
 var click = 0;
 var timeEl = document.querySelector(".timer");
-var titleScreenEl = document.querySelector(".title-screen");
+var mainSectionEl = document.querySelector(".main-section");
 var startQuizBtnEl = document.querySelector("#startQuiz");
 var quizSectionEl = document.querySelector(".quiz-section");
 var feedbackEl = document.querySelector(".feedback");
@@ -58,7 +58,6 @@ var questionCheck = function(){
         feedbackEl.querySelector("h3").textContent = "Wrong";
         secondsRemain -= 5;
         timeEl.textContent = "Timer: " + secondsRemain;
-        console.log(secondsRemain);
     }
 };
 
@@ -96,7 +95,7 @@ var countdownTimer = function() {
 };
 
 function beginQuiz(){
-    titleScreenEl.querySelector("#clear").innerHTML = null;
+    mainSectionEl.querySelector("#title-page").innerHTML = null;
     countdownTimer();
     questionDisplay();
 }

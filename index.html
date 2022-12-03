@@ -17,20 +17,33 @@
         </ul>
     </header>
     <main>
-        <!-- Main Page -->
-        <section class="title-screen">
-            <div id = "clear">
+        <section class="main-section">
+            <!-- Title Page -->
+            <div id = "title-page">
             <h1>Coding Quiz Challenge</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, aut doloribus hic aliquam error aspernatur facere, necessitatibus voluptatibus commodi, quidem assumenda temporibus eaque nesciunt illum praesentium quisquam tenetur animi nisi.</p>
             <button id="startQuiz" class="btn">Start!</button>
             </div>
 
-            <!-- Section for quiz -->
+            <!-- Quiz -->
             <div class="quiz-section" data-index="0">
                 <h2></h2>
                 <div id="buttons"></div>
             </div>
+
+            <!-- All Done! -->
+            <div id = "finished-page">
+                <h1>All Done!</h1>
+                <p id="final-score">Your final score is</p>
+                <form id="initials" method="POST">
+                    <label for="initials">Add your initials: </label>
+                    <input type="text"name="todo-text" id="todo-text" />
+                </form>
+                <button id="submit" class="btn">Submit</button>
+            </div>
+
         </section>
+        <!-- Section for feedback during quiz-->
         <section class="feedback">
             <h3></h3>
         </section>
