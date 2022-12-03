@@ -9,6 +9,7 @@ var quizSectionEl = document.querySelector(".quiz-section");
 var feedbackEl = document.querySelector(".feedback");
 var finishedPageEl = document.querySelector("#finished-page");
 var finalScoreEl = document.querySelector("#final-score");
+var highscoreLink = document.querySelector("#highscore-link");
 
 var click = 0;
 var answers = ["1","1","3","2","3"];
@@ -48,7 +49,7 @@ var questionBank = [{
 
 // Function to begin quiz
 startQuizBtnEl.addEventListener("click", function beginQuiz(){
-    document.getElementById("title-page").style.display = "none";
+    resetScreen();
     countdownTimer();
     questionDisplay();
 });
@@ -89,8 +90,7 @@ quizSectionEl.addEventListener("click", function(event){
         click++;
         quizSectionEl.dataset.index = click;
     } else{
-        quizSectionEl.style.display = "none";
-        feedbackEl.style.display = "none";
+        resetScreen();
         score = secondsRemain;
         console.log(score);
         clearInterval(timerInterval);
@@ -108,8 +108,7 @@ var countdownTimer = function() {
       timeEl.textContent = "Timer: " + secondsRemain;
       if(secondsRemain === 0) {
         clearInterval(timerInterval);
-        quizSectionEl.style.display = "none";
-        feedbackEl.style.display = "none";
+        resetScreen();
         score = secondsRemain;
         allDone();
       }
@@ -129,10 +128,10 @@ var allDone = function (){
 
 // Function for High Score page
 var highScorePage = function(){
-    document.getElementById("finished-page").style.display = "none";
+    resetScreen();
     document.getElementById("highscores").style.display = "block";
     backHomeBtnEl.addEventListener("click", function(){
-        document.getElementById("highscores").style.display = "none";
+        resetScreen();
         secondsRemain = 75;
         timeEl.textContent = "Timer: " + secondsRemain;
         click = 0;
@@ -144,6 +143,14 @@ var highScorePage = function(){
     //TODO: clear high scores
 };
 
+// Function to clear screen
+var resetScreen = function() {
+    document.getElementById("finished-page").style.display = "none";
+    document.getElementById("title-page").style.display = "none";
+    document.getElementById("highscores").style.display = "none";
+    quizSectionEl.style.display = "none";
+    feedbackEl.style.display = "none";
+}
 
 
 
