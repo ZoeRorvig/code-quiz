@@ -1,7 +1,7 @@
 // Variables
 var click = 0;
 var timeEl = document.querySelector(".timer");
-var titleScreenEl = document.querySelector("#title-screen");
+var titleScreenEl = document.querySelector(".title-screen");
 var startQuizBtnEl = document.querySelector("#startQuiz");
 var quizSectionEl = document.querySelector(".quiz-section");
 
@@ -38,6 +38,8 @@ var questionDisplay = function() {
     }
 };
 
+// Function to move questions forward
+
 // Function for timer countdown.
 function countdownTimer() {
     var secondsRemain = 75;
@@ -51,6 +53,7 @@ function countdownTimer() {
 };
 
 function beginQuiz(){
+    titleScreenEl.querySelector("#clear").innerHTML = null;
     countdownTimer();
     questionDisplay();
 }
