@@ -7,6 +7,8 @@ var quizSectionEl = document.querySelector(".quiz-section");
 
 var answers = ["1","1","3","2","3"];
 var secondsRemain = 75;
+var score = 0;
+var timerInterval;
 
 // Questions
 var questionBank = [{
@@ -53,10 +55,11 @@ var nextQuestion = function(event){
         quizSectionEl.dataset.index = click;
     } else{
         quizSectionEl.innerHTML = null;
-        var timeRemain = secondsRemain;
-        console.log(timeRemain);
-        timeEl.innerHTML = null; //add the property that keeps the page from refreshing
-        return; 
+        timeEl.innerHTML = null;
+        score = secondsRemain;
+        console.log(score);
+        clearInterval(timerInterval);
+        return;
     }
     questionDisplay();
 }
@@ -64,13 +67,15 @@ var nextQuestion = function(event){
 
 // Function for timer countdown.
 var countdownTimer = function() {
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
       secondsRemain--; 
       timeEl.textContent = "Timer: " + secondsRemain;
       if(secondsRemain === 0) {
         clearInterval(timerInterval);
+        timeEl.innerHTML = null;
+        quizSectionEl.innerHTML = null;
       }
-    }, 500); 
+    }, 200); 
 };
 
 function beginQuiz(){
