@@ -7,19 +7,19 @@ var quizSectionEl = document.querySelector(".quiz-section");
 var feedbackEl = document.querySelector(".feedback");
 var finishedPageEl = document.querySelector("#finished-page");
 var finalScoreEl = document.querySelector("#final-score");
+var submitBtnEl = document.querySelector("#submit");
 
 var answers = ["1","1","3","2","3"];
 var secondsRemain = 75;
 var score = 0;
 var timerInterval;
-var check;
 var element;
 
 // Highscores
 var highscores = [{
     score: "",
     initials: "",
-}]
+}];
 
 // Questions
 var questionBank = [{
@@ -58,7 +58,7 @@ var questionDisplay = function() {
 
 // Function for question grading
 var questionCheck = function(){
-    check = element.dataset.choice === answers[click];
+    var check = element.dataset.choice === answers[click];
     console.log(check);
     if (check === true){
         feedbackEl.querySelector("h3").textContent = "Correct";
@@ -70,7 +70,7 @@ var questionCheck = function(){
 };
 
 // Function to move questions forward
-var nextQuestion = function(event){
+quizSectionEl.addEventListener("click", function(event){
     element = event.target;
     if (element.matches(".quiz-section button")){
         questionCheck();
@@ -88,7 +88,7 @@ var nextQuestion = function(event){
     }
     questionDisplay();
 }
-};
+});
 
 // Function for timer countdown.
 var countdownTimer = function() {
@@ -107,15 +107,19 @@ var countdownTimer = function() {
 
 // Function for All Done page
 var allDone = function (){
+    document.getElementById('finished-page').style.display = "block";
     finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
+    submitBtnEl.addEventListener("click", function(){
+        console.log("hello");
+        //TODO: Store values then pull for highscore page
+    });
 };
 
-function beginQuiz(){
+startQuizBtnEl.addEventListener("click", function beginQuiz(){
     mainSectionEl.querySelector("#title-page").innerHTML = null;
     countdownTimer();
     questionDisplay();
-}
+});
 
-// Add event listener to startQuiz button
-startQuizBtnEl.addEventListener("click", beginQuiz);
-quizSectionEl.addEventListener("click", nextQuestion);
+
+
