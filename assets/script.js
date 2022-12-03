@@ -14,7 +14,7 @@ var questionBank = [{
     answer: "1"
 }, {    
     question: "Question Text2",
-    options: ["1. O1","2. O2","3. O3","4. O4"],
+    options: ["1. O1","2. O2","3. O3"],
     answer: "1"
 }, {    
     question: "Question Text3",
@@ -33,11 +33,12 @@ var questionBank = [{
 // Function for showing the questions
 var questionDisplay = function() {
     quizSectionEl.querySelector("h2").textContent = questionBank[click].question;
+    quizSectionEl.querySelector("#buttons").innerHTML = null;
     for (var questionOptions of questionBank[click].options) {
         var buttonEl = document.createElement("button");
         buttonEl.textContent = questionOptions;
         buttonEl.dataset.choice = questionOptions[0];
-        quizSectionEl.appendChild(buttonEl);
+        quizSectionEl.querySelector("#buttons").appendChild(buttonEl);
     }
 };
 
@@ -45,9 +46,10 @@ var questionDisplay = function() {
 var nextQuestion = function(event){
     var element = event.target;
     if(element.matches(".quiz-section button")){
-    if(click < questionBank.length - 1){
         console.log(element.dataset.choice === answers[click]);
+    if(click < questionBank.length - 1){
         click++;
+        quizSectionEl.dataset.index = click;
     }
     questionDisplay();
 }
