@@ -5,27 +5,29 @@ var titleScreenEl = document.querySelector(".title-screen");
 var startQuizBtnEl = document.querySelector("#startQuiz");
 var quizSectionEl = document.querySelector(".quiz-section");
 
+var answers = ["1","1","3","2","3"];
+
 // Questions
 var questionBank = [{
     question: "Question Text1",
-    options: ["O1","O2","O3","O4"],
-    answer: 0
+    options: ["1. O1","2. O2","3. O3","4. O4"],
+    answer: "1"
 }, {    
     question: "Question Text2",
-    options: ["O1","O2","O3","O4"],
-    answer: 1
+    options: ["1. O1","2. O2","3. O3","4. O4"],
+    answer: "1"
 }, {    
     question: "Question Text3",
-    options: ["O1","O2","O3","O4"],
-    answer: 3
+    options: ["1. O1","2. O2","3. O3","4. O4"],
+    answer: "3"
 }, {    
     question: "Question Text4",
-    options: ["O1","O2","O3","O4"],
-    answer: 2
+    options: ["1. O1","2. O2","3. O3","4. O4"],
+    answer: "2"
 }, {    
     question: "Question Text5",
-    options: ["O1","O2","O3","O4"],
-    answer: 3
+    options: ["1. O1","2. O2","3. O3","4. O4"],
+    answer: "3"
 }];
 
 // Function for showing the questions
@@ -34,6 +36,7 @@ var questionDisplay = function() {
     for (var questionOptions of questionBank[click].options) {
         var buttonEl = document.createElement("button");
         buttonEl.textContent = questionOptions;
+        buttonEl.dataset.choice = questionOptions[0];
         quizSectionEl.appendChild(buttonEl);
     }
 };
@@ -43,8 +46,7 @@ var nextQuestion = function(event){
     var element = event.target;
     if(element.matches(".quiz-section button")){
     if(click < questionBank.length - 1){
-        var answers = element.dataset.choice === questionBank.answer[click];
-        console.log(answers);
+        console.log(element.dataset.choice === answers[click]);
         click++;
     }
     questionDisplay();
