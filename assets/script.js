@@ -5,6 +5,8 @@ var mainSectionEl = document.querySelector(".main-section");
 var startQuizBtnEl = document.querySelector("#startQuiz");
 var quizSectionEl = document.querySelector(".quiz-section");
 var feedbackEl = document.querySelector(".feedback");
+var finishedPageEl = document.querySelector("#finished-page");
+var finalScoreEl = document.querySelector("#final-score");
 
 var answers = ["1","1","3","2","3"];
 var secondsRemain = 75;
@@ -12,6 +14,12 @@ var score = 0;
 var timerInterval;
 var check;
 var element;
+
+// Highscores
+var highscores = [{
+    score: "",
+    initials: "",
+}]
 
 // Questions
 var questionBank = [{
@@ -75,6 +83,7 @@ var nextQuestion = function(event){
         score = secondsRemain;
         console.log(score);
         clearInterval(timerInterval);
+        allDone();
         return;
     }
     questionDisplay();
@@ -90,8 +99,15 @@ var countdownTimer = function() {
         clearInterval(timerInterval);
         quizSectionEl.innerHTML = null;
         feedbackEl.innerHTML =null;
+        score = secondsRemain;
+        allDone();
       }
     }, 1000); 
+};
+
+// Function for All Done page
+var allDone = function (){
+    finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
 };
 
 function beginQuiz(){
