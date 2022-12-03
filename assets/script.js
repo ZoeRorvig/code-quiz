@@ -4,11 +4,14 @@ var timeEl = document.querySelector(".timer");
 var titleScreenEl = document.querySelector(".title-screen");
 var startQuizBtnEl = document.querySelector("#startQuiz");
 var quizSectionEl = document.querySelector(".quiz-section");
+var feedbackEl = document.querySelector(".feedback");
 
 var answers = ["1","1","3","2","3"];
 var secondsRemain = 75;
 var score = 0;
 var timerInterval;
+var check;
+var element;
 
 // Questions
 var questionBank = [{
@@ -45,17 +48,30 @@ var questionDisplay = function() {
     }
 };
 
+// Function for question grading
+var questionCheck = function(){
+    check = element.dataset.choice === answers[click];
+    console.log(check);
+    if (check === true){
+        feedbackEl.querySelector("h3").textContent = "Correct";
+    } else if (check === false){
+        feedbackEl.querySelector("h3").textContent = "Wrong";
+        secondsRemain -= 10;
+    }
+};
+
 // Function to move questions forward
 var nextQuestion = function(event){
-    var element = event.target;
+    element = event.target;
     if (element.matches(".quiz-section button")){
-        console.log(element.dataset.choice === answers[click]);
+        questionCheck();
     if (click < questionBank.length - 1){
         click++;
         quizSectionEl.dataset.index = click;
     } else{
         quizSectionEl.innerHTML = null;
         timeEl.innerHTML = null;
+        feedbackEl.innerHTML =null;
         score = secondsRemain;
         console.log(score);
         clearInterval(timerInterval);
@@ -69,13 +85,15 @@ var nextQuestion = function(event){
 var countdownTimer = function() {
     timerInterval = setInterval(function() {
       secondsRemain--; 
+      console.log(secondsRemain);
       timeEl.textContent = "Timer: " + secondsRemain;
       if(secondsRemain === 0) {
         clearInterval(timerInterval);
         timeEl.innerHTML = null;
         quizSectionEl.innerHTML = null;
+        feedbackEl.innerHTML =null;
       }
-    }, 200); 
+    }, 1000); 
 };
 
 function beginQuiz(){
