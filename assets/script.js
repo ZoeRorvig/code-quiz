@@ -115,8 +115,11 @@ var allDone = function (){
     });
 };
 
+
+
 startQuizBtnEl.addEventListener("click", function beginQuiz(){
-    mainSectionEl.querySelector("#title-page").innerHTML = null;
+    // mainSectionEl.querySelector("#title-page").innerHTML = null;
+    document.getElementById('title-page').style.display = "none";
     countdownTimer();
     questionDisplay();
 });

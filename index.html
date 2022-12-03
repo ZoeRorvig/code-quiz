@@ -19,7 +19,7 @@
     <main>
         <section class="main-section">
             <!-- Title Page -->
-            <div id = "title-page">
+            <div id = "title-page" style="display: block;">
             <h1>Coding Quiz Challenge</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, aut doloribus hic aliquam error aspernatur facere, necessitatibus voluptatibus commodi, quidem assumenda temporibus eaque nesciunt illum praesentium quisquam tenetur animi nisi.</p>
             <button id="startQuiz" class="btn">Start!</button>
@@ -33,7 +33,7 @@
 
             <!-- All Done! -->
             <div id = "finished-page" style="display: none;">
-                <h3>All Done!</h3>
+                <h2>All Done!</h2>
                 <p id="final-score">Your final score is</p>
                 <form id="initials" method="POST">
                     <label for="initials">Add your initials: </label>
@@ -42,6 +42,12 @@
                 <button id="submit" class="btn">Submit</button>
             </div>
 
+            <!-- Highscores -->
+            <div id="highscores" style="display: block;">
+                <h2>High Scores</h2>
+                <button id="backHome" class="btn">Go Back</button>
+                <button id="clear-scores" class="btn">Clear High Scores</button>
+            </div>
         </section>
         <!-- Section for feedback during quiz-->
         <section class="feedback">
