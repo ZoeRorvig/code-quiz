@@ -6,6 +6,7 @@ var startQuizBtnEl = document.querySelector("#startQuiz");
 var quizSectionEl = document.querySelector(".quiz-section");
 
 var answers = ["1","1","3","2","3"];
+var secondsRemain = 75;
 
 // Questions
 var questionBank = [{
@@ -45,11 +46,17 @@ var questionDisplay = function() {
 // Function to move questions forward
 var nextQuestion = function(event){
     var element = event.target;
-    if(element.matches(".quiz-section button")){
+    if (element.matches(".quiz-section button")){
         console.log(element.dataset.choice === answers[click]);
-    if(click < questionBank.length - 1){
+    if (click < questionBank.length - 1){
         click++;
         quizSectionEl.dataset.index = click;
+    } else{
+        quizSectionEl.innerHTML = null;
+        var timeRemain = secondsRemain;
+        console.log(timeRemain);
+        timeEl.innerHTML = null; //add the property that keeps the page from refreshing
+        return; 
     }
     questionDisplay();
 }
@@ -57,14 +64,13 @@ var nextQuestion = function(event){
 
 // Function for timer countdown.
 var countdownTimer = function() {
-    var secondsRemain = 75;
     var timerInterval = setInterval(function() {
       secondsRemain--; 
       timeEl.textContent = "Timer: " + secondsRemain;
       if(secondsRemain === 0) {
         clearInterval(timerInterval);
       }
-    }, 100); 
+    }, 500); 
 };
 
 function beginQuiz(){
