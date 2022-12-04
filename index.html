@@ -12,7 +12,7 @@
 <body>
     <header>
         <ul class="header-section">
-            <li><a href="#highscores" id="highscore-link">View High Scores</a></li>
+            <li><a href="#highscores">View High Scores</a></li>
             <li class="timer"> Timer: 75</li>
         </ul>
     </header>
@@ -37,7 +37,7 @@
                 <p id="final-score">Your final score is</p>
                 <form id="initials" method="POST">
                     <label for="initials">Add your initials: </label>
-                    <input type="text" name="initials" id="initials" />
+                    <input type="text" name="initials" id="initial" />
                 </form>
                 <button id="submit" class="btn">Submit</button>
             </div>
@@ -49,6 +49,7 @@
                 <button id="clear-scores" class="btn">Clear High Scores</button>
             </div>
         </section>
+
         <!-- Section for feedback during quiz-->
         <section class="feedback" style="display: none;">
             <h3></h3>

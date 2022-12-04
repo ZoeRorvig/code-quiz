@@ -4,25 +4,19 @@ var submitBtnEl = document.querySelector("#submit");
 var backHomeBtnEl = document.querySelector("#back-home");
 var clearScoresBtnEl = document.querySelector("#clear-scores");
 var timeEl = document.querySelector(".timer");
-var mainSectionEl = document.querySelector(".main-section");
 var quizSectionEl = document.querySelector(".quiz-section");
 var feedbackEl = document.querySelector(".feedback");
 var finishedPageEl = document.querySelector("#finished-page");
-var finalScoreEl = document.querySelector("#final-score");
-var highscoreLink = document.querySelector("#highscore-link");
+var initialsEl = document.querySelector("#initial");
 
 var click = 0;
-var answers = ["1","1","3","2","3"];
 var secondsRemain = 75;
 var score = 0;
 var timerInterval;
 var element;
 
 // Highscores
-var highscores = [{
-    score: "",
-    initials: "",
-}];
+var highscores = [];
 
 // Questions
 var questionBank = [{
@@ -47,6 +41,8 @@ var questionBank = [{
     answer: "3"
 }];
 
+var correctAnswers = ["1","1","3","2","3"];
+
 // Function to begin quiz
 startQuizBtnEl.addEventListener("click", function beginQuiz(){
     resetScreen();
@@ -70,8 +66,7 @@ var questionDisplay = function() {
 // Function for question grading
 var questionCheck = function(){
     feedbackEl.style.display = "block";
-    var check = element.dataset.choice === answers[click];
-    console.log(check);
+    var check = element.dataset.choice === correctAnswers[click];
     if (check === true){
         feedbackEl.querySelector("h3").textContent = "Correct";
     } else if (check === false){
@@ -92,7 +87,6 @@ quizSectionEl.addEventListener("click", function(event){
     } else{
         resetScreen();
         score = secondsRemain;
-        console.log(score);
         clearInterval(timerInterval);
         allDone();
         return;
@@ -119,9 +113,19 @@ var countdownTimer = function() {
 var allDone = function (){
     document.getElementById("finished-page").style.display = "block";
     finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
-    submitBtnEl.addEventListener("click", function(){
-        console.log("hello");
+    submitBtnEl.addEventListener("click", function(event){
+        event.preventDefault();
+        var highscore = {
+            score: score,
+            initial: document.getElementById("initial").value
+        };
+        highscores.push(highscore);
+
+        initialsEl.value = "";
+
         //TODO: Store values then pull for highscore page
+        //TODO: Check to make sure initials were entered
+        //TODO: sort high scores
         highScorePage();
     });
 };
@@ -130,13 +134,15 @@ var allDone = function (){
 var highScorePage = function(){
     resetScreen();
     document.getElementById("highscores").style.display = "block";
+
     backHomeBtnEl.addEventListener("click", function(){
         resetScreen();
         secondsRemain = 75;
-        timeEl.textContent = "Timer: " + secondsRemain;
         click = 0;
+        timeEl.textContent = "Timer: " + secondsRemain;
         quizSectionEl.dataset.index = 0;
         document.getElementById("title-page").style.display = "block";
+        return;
     });
 
     //TODO:display high scores
@@ -150,8 +156,7 @@ var resetScreen = function() {
     document.getElementById("highscores").style.display = "none";
     quizSectionEl.style.display = "none";
     feedbackEl.style.display = "none";
-}
-
+};
 
 
 
