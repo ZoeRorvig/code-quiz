@@ -115,26 +115,6 @@ var countdownTimer = function() {
 var allDone = function (){
     document.getElementById("finished-page").style.display = "block";
     finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
-    submitBtnEl.addEventListener("click", function(event){
-        event.preventDefault();
-        
-        highscore = {
-            score: score,
-            initial: document.getElementById("initial").value,
-        };
-
-        console.log(highscore);
-
-        highscores.push(highscore);
-
-        console.log(highscores);
-
-        localStorage.setItem("highscores",JSON.stringify(highscores));
-
-        //TODO: Check to make sure initials were entered
-        //TODO: sort high scores
-        highScorePage();
-    });
 };
 
 // Function to grab High Scores
@@ -153,7 +133,7 @@ var highScorePage = function(){
     highscoresListEl.style.display = "block";
 
    grabHighscores();
-
+    highscoresListEl.innerHTML = null;
     for (var i = 0; i < highscores.length; i++) {
         var userScore = highscores[i];
     
@@ -163,23 +143,7 @@ var highScorePage = function(){
         highscoresListEl.appendChild(li);
       };
 
-    backHomeBtnEl.addEventListener("click", function(){
-        resetScreen();
-        secondsRemain = 75;
-        click = 0;
-        timeEl.textContent = "Timer: " + secondsRemain;
-        quizSectionEl.dataset.index = 0;
-        document.getElementById("title-page").style.display = "block";
-        return;
-    });
-
     //TODO: Why duplicates?
-
-    clearScoresBtnEl.addEventListener("click", function(){
-        localStorage.clear();
-        highscoresListEl.style.display = "none";
-        grabHighscores();
-    });
 };
 
 // Function to clear screen
@@ -191,7 +155,42 @@ var resetScreen = function() {
     feedbackEl.style.display = "none";
 };
 
+submitBtnEl.addEventListener("click", function(event){
+    event.preventDefault();
+    
+    highscore = {
+        score: score,
+        initial: document.getElementById("initial").value,
+    };
 
+    console.log(highscore);
+
+    highscores.push(highscore);
+
+    console.log(highscores);
+
+    localStorage.setItem("highscores",JSON.stringify(highscores));
+
+    //TODO: Check to make sure initials were entered
+    //TODO: sort high scores
+    highScorePage();
+});
+
+backHomeBtnEl.addEventListener("click", function(){
+    resetScreen();
+    secondsRemain = 75;
+    click = 0;
+    timeEl.textContent = "Timer: " + secondsRemain;
+    quizSectionEl.dataset.index = 0;
+    document.getElementById("title-page").style.display = "block";
+    return;
+});
+
+clearScoresBtnEl.addEventListener("click", function(){
+    localStorage.clear();
+    highscoresListEl.style.display = "none";
+    grabHighscores();
+});
 
 
 
