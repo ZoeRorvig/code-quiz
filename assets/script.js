@@ -8,6 +8,7 @@ var quizSectionEl = document.querySelector(".quiz-section");
 var feedbackEl = document.querySelector(".feedback");
 var finishedPageEl = document.querySelector("#finished-page");
 var initialsEl = document.querySelector("#initial");
+var highscoresListEl = document.querySelector("#highscore-list");
 
 var click = 0;
 var secondsRemain = 75;
@@ -115,15 +116,20 @@ var allDone = function (){
     finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
     submitBtnEl.addEventListener("click", function(event){
         event.preventDefault();
+
         var highscore = {
             score: score,
-            initial: document.getElementById("initial").value
+            initial: document.getElementById("initial").value,
         };
+
+        console.log(highscore);
+
         highscores.push(highscore);
 
-        initialsEl.value = "";
+        console.log(highscores);
 
-        //TODO: Store values then pull for highscore page
+        localStorage.setItem("highscores",JSON.stringify(highscores));
+
         //TODO: Check to make sure initials were entered
         //TODO: sort high scores
         highScorePage();
@@ -134,9 +140,26 @@ var allDone = function (){
 var highScorePage = function(){
     resetScreen();
     document.getElementById("highscores").style.display = "block";
+    highscoresListEl.style.display = "block";
+
+    var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+
+    if (storedHighscores !== null) {
+        highscores = storedHighscores;
+      }
+
+    for (var i = 0; i < highscores.length; i++) {
+        var userScore = highscores[i];
+    
+        var li = document.createElement("li");
+        li.textContent = i+1 + ". " + userScore.initial + " - " + userScore.score;
+        li.setAttribute("data-index", i);
+        highscoresListEl.appendChild(li);
+      };
 
     backHomeBtnEl.addEventListener("click", function(){
         resetScreen();
+        highscores = [];
         secondsRemain = 75;
         click = 0;
         timeEl.textContent = "Timer: " + secondsRemain;
@@ -145,8 +168,13 @@ var highScorePage = function(){
         return;
     });
 
-    //TODO:display high scores
+    //TODO: Why duplicates?
     //TODO: clear high scores
+
+    clearScoresBtnEl.addEventListener("click", function(){
+        localStorage.clear();
+        highscoresListEl.style.display = "none";
+    });
 };
 
 // Function to clear screen
@@ -157,6 +185,8 @@ var resetScreen = function() {
     quizSectionEl.style.display = "none";
     feedbackEl.style.display = "none";
 };
+
+
 
 
 
