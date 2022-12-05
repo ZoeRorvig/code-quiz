@@ -156,7 +156,7 @@ var resetScreen = function() {
 };
 
 submitBtnEl.addEventListener("click", function(event){
-    event.preventDefault();
+    // event.preventDefault();
     
     highscore = {
         score: score,
@@ -183,6 +183,7 @@ backHomeBtnEl.addEventListener("click", function(){
     timeEl.textContent = "Timer: " + secondsRemain;
     quizSectionEl.dataset.index = 0;
     document.getElementById("title-page").style.display = "block";
+    location.reload();
     return;
 });
 
