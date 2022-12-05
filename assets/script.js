@@ -11,12 +11,12 @@ var initialsEl = document.querySelector("#initial");
 var highscoresListEl = document.querySelector("#highscore-list");
 
 var click = 0;
-var secondsRemain = 75;
 var score = 0;
+var secondsRemain = 75;
 var timerInterval;
 var element;
+var highscore;
 
-// Highscores
 var highscores = [];
 
 // Questions
@@ -47,6 +47,7 @@ var correctAnswers = ["1","1","3","2","3"];
 // Function to begin quiz
 startQuizBtnEl.addEventListener("click", function beginQuiz(){
     resetScreen();
+    grabHighscores();
     countdownTimer();
     questionDisplay();
 });
@@ -116,8 +117,8 @@ var allDone = function (){
     finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
     submitBtnEl.addEventListener("click", function(event){
         event.preventDefault();
-
-        var highscore = {
+        
+        highscore = {
             score: score,
             initial: document.getElementById("initial").value,
         };
@@ -136,17 +137,22 @@ var allDone = function (){
     });
 };
 
+// Function to grab High Scores
+var grabHighscores = function(){
+var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+
+if (storedHighscores !== null) {
+    highscores = storedHighscores;
+  };
+};
+
 // Function for High Score page
 var highScorePage = function(){
     resetScreen();
     document.getElementById("highscores").style.display = "block";
     highscoresListEl.style.display = "block";
 
-    var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
-
-    if (storedHighscores !== null) {
-        highscores = storedHighscores;
-      }
+   grabHighscores();
 
     for (var i = 0; i < highscores.length; i++) {
         var userScore = highscores[i];
@@ -159,7 +165,6 @@ var highScorePage = function(){
 
     backHomeBtnEl.addEventListener("click", function(){
         resetScreen();
-        highscores = [];
         secondsRemain = 75;
         click = 0;
         timeEl.textContent = "Timer: " + secondsRemain;
@@ -169,11 +174,11 @@ var highScorePage = function(){
     });
 
     //TODO: Why duplicates?
-    //TODO: clear high scores
 
     clearScoresBtnEl.addEventListener("click", function(){
         localStorage.clear();
         highscoresListEl.style.display = "none";
+        grabHighscores();
     });
 };
 
