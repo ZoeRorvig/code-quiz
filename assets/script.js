@@ -20,28 +20,48 @@ var highscores = [];
 
 // Questions
 var questionBank = [{
-    question: "Question Text1",
-    options: ["1. O1","2. O2","3. O3","4. O4"],
+    question: "Inside which HTML element do we put the JavaScript?",
+    options: ["A. <scripting>","B. <javascript>","C. <script>","D. <js>"],
     answer: "1"
 }, {    
     question: "Question Text2",
-    options: ["1. O1","2. O2","3. O3"],
+    options: ["A. O1","B. O2","C. O3","D. O4"],
     answer: "1"
 }, {    
     question: "Question Text3",
-    options: ["1. O1","2. O2","3. O3","4. O4"],
+    options: ["A. O1","B. O2","C. O3","D. O4"],
     answer: "3"
 }, {    
-    question: "Question Text4",
-    options: ["1. O1","2. O2","3. O3","4. O4"],
+    question: "How do you write \"Hello World\" in an alert box?",
+    options: ["A. O1","B. O2","C. O3","D. O4"],
     answer: "2"
 }, {    
     question: "Question Text5",
-    options: ["1. O1","2. O2","3. O3","4. O4"],
+    options: ["A. O1","B. O2","C. O3","D. O4"],
     answer: "3"
+}, {    
+    question: "How does a FOR loop start?",
+    options: ["A. for(i = 0; i <= 5; i++)","B. for(i<=5; i++)","C. for i = 1 to 5","D. for(i = 0; i <= 5)"],
+    answer: "2"
+}, {    
+    question: "Question Text4",
+    options: ["A. O1","B. O2","C. O3","D. O4"],
+    answer: "2"
+}, {    
+    question: "Question Text4",
+    options: ["A. O1","B. O2","C. O3","D. O4"],
+    answer: "2"
+}, {    
+    question: "Question Text4",
+    options: ["A. O1","B. O2","C. O3","D. O4"],
+    answer: "2"
+}, {    
+    question: "Question Text4",
+    options: ["A. O1","B. O2","C. O3","D. O4"],
+    answer: "2"
 }];
 
-var correctAnswers = ["1","1","3","2","3"];
+var correctAnswers = ["1","1","3","2","3","1","1","3","2","3"];
 
 // Function to begin quiz
 startQuizBtnEl.addEventListener("click", function beginQuiz(){
@@ -101,7 +121,8 @@ var countdownTimer = function() {
     timerInterval = setInterval(function() {
       secondsRemain--; 
       timeEl.textContent = "Timer: " + secondsRemain;
-      if(secondsRemain === 0) {
+
+      if (secondsRemain === 0) {
         clearInterval(timerInterval);
         resetScreen();
         score = secondsRemain;
@@ -146,18 +167,13 @@ var highScorePage = function(){
       };
 };
 
-// Function to clear screen
-var resetScreen = function() {
-    document.getElementById("finished-page").style.display = "none";
-    document.getElementById("title-page").style.display = "none";
-    document.getElementById("highscores").style.display = "none";
-    quizSectionEl.style.display = "none";
-    feedbackEl.style.display = "none";
-};
-
 // Function to submit initials and highscore
 submitBtnEl.addEventListener("click", function(event){
     event.preventDefault();
+    if (document.getElementById("initial").value == ""){
+        alert("Please enter your initials!");
+        return allDone;
+    }
     highscore = {
         score: score,
         initial: document.getElementById("initial").value,
@@ -197,5 +213,14 @@ highscoreLinkEl.addEventListener("click", function(){
 initialsEl.addEventListener("click", function(){
     feedbackEl.style.display = "none";
 });
+
+// Function to clear screen
+var resetScreen = function() {
+    document.getElementById("finished-page").style.display = "none";
+    document.getElementById("title-page").style.display = "none";
+    document.getElementById("highscores").style.display = "none";
+    quizSectionEl.style.display = "none";
+    feedbackEl.style.display = "none";
+};
 
 

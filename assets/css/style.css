@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;  
     list-style-type: none;
-  }
+    font-weight: bold;
+}
 
 h2 {
   font-size: 32px;
@@ -10,18 +11,26 @@ h2 {
 
 #title-page {
   display: block;
+
 }
 
-.quiz-section {
+.quiz-section, #finished-page, #highscores {
   display: none;
 }
 
-#finished-page {
+#highscore-list{
   display: none;
+  background-color: rgba(71, 145, 145, 0.353);
+  width: 50%;
 }
 
-#highscores{
-  display: none;
+#highscore-list li{
+  border: 1px solid black;
+  padding: 10px;
+}
+
+#highscore-list li:nth-child(2n){
+  background-color: rgba(71, 145, 145, 0.353);
 }
 
 .feedback{
@@ -35,15 +44,3 @@ h2 {
 button{
   margin-top: 15px;
 }
-
-/* body{
-  background-color: rgba(192, 248, 248, 0.412);
-} */
-
-/* body header{ 
-  background-color: rgba(132, 196, 196, 0.423);
-  border-bottom: none;
-  padding: 0;
-} */ 
-
-  

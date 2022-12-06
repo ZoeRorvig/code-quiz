@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz Challenge</title>
     <link rel="stylesheet" href="./assets/css/reset.css" />
-    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"> -->
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
@@ -32,7 +28,9 @@
             <!-- Quiz -->
             <div class="quiz-section" data-index="0">
                 <h2></h2>
-                <div id="buttons"></div>
+                <div class="align-quiz">
+                    <div id="buttons"></div>
+                </div>
             </div>
 
             <!-- All Done! -->
@@ -49,7 +47,7 @@
             <!-- Highscores -->
             <div id="highscores">
                 <h2>High Scores</h2>
-                <ul id="highscore-list" style="display: none;"></ul>
+                <ul id="highscore-list"></ul>
                 <button id="back-home" class="btn">Go Back</button>
                 <button id="clear-scores" class="btn">Clear High Scores</button>
             </div>
