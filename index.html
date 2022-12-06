@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz Challenge</title>
     <link rel="stylesheet" href="./assets/css/reset.css" />
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css">  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"> -->
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
     <header>
-        <ul class="header-section">
+        <ul id="header-section">
             <li><a href = "#" id = "highscore-link">View High Scores</a></li>
             <li class="timer">Timer: 75</li>
         </ul>
@@ -19,20 +23,20 @@
     <main>
         <section class="main-section">
             <!-- Title Page -->
-            <div id = "title-page" style="display: block;">
+            <div id = "title-page">
             <h1>Coding Quiz Challenge</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, aut doloribus hic aliquam error aspernatur facere, necessitatibus voluptatibus commodi, quidem assumenda temporibus eaque nesciunt illum praesentium quisquam tenetur animi nisi.</p>
             <button id="startQuiz" class="btn">Start!</button>
             </div>
 
             <!-- Quiz -->
-            <div class="quiz-section" data-index="0" style="display: hidden;">
+            <div class="quiz-section" data-index="0">
                 <h2></h2>
                 <div id="buttons"></div>
             </div>
 
             <!-- All Done! -->
-            <div id = "finished-page" style="display: none;">
+            <div id = "finished-page">
                 <h2>All Done!</h2>
                 <p id="final-score">Your final score is</p>
                 <form id="initials">
@@ -43,7 +47,7 @@
             </div>
 
             <!-- Highscores -->
-            <div id="highscores" style="display: none;">
+            <div id="highscores">
                 <h2>High Scores</h2>
                 <ul id="highscore-list" style="display: none;"></ul>
                 <button id="back-home" class="btn">Go Back</button>
@@ -52,7 +56,7 @@
         </section>
 
         <!-- Section for feedback during quiz-->
-        <section class="feedback" style="display: none;">
+        <section class="feedback">
             <h3></h3>
         </section>
     </main>

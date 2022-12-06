@@ -1,7 +1,49 @@
-ul {
+#header-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;  
     list-style-type: none;
-    padding: 10px;
   }
+
+h2 {
+  font-size: 32px;
+}
+
+#title-page {
+  display: block;
+}
+
+.quiz-section {
+  display: none;
+}
+
+#finished-page {
+  display: none;
+}
+
+#highscores{
+  display: none;
+}
+
+.feedback{
+  display: none;
+}
+
+.feedback h3{
+  color:rgba(102, 99, 99, 0.777);
+}
+
+button{
+  margin-top: 15px;
+}
+
+/* body{
+  background-color: rgba(192, 248, 248, 0.412);
+} */
+
+/* body header{ 
+  background-color: rgba(132, 196, 196, 0.423);
+  border-bottom: none;
+  padding: 0;
+} */ 
+
   

@@ -69,9 +69,9 @@ var questionCheck = function(){
     feedbackEl.style.display = "block";
     var check = element.dataset.choice === correctAnswers[click];
     if (check === true){
-        feedbackEl.querySelector("h3").textContent = "Correct";
+        feedbackEl.querySelector("h3").textContent = "Correct!";
     } else if (check === false){
-        feedbackEl.querySelector("h3").textContent = "Wrong";
+        feedbackEl.querySelector("h3").textContent = "Wrong! The correct answer was " + correctAnswers[click] + ".";
         secondsRemain -= 5;
         timeEl.textContent = "Timer: " + secondsRemain;
     }
@@ -114,6 +114,7 @@ var countdownTimer = function() {
 var allDone = function (){
     document.getElementById("finished-page").style.display = "block";
     finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
+    questionCheck();
 };
 
 // Function to grab High Scores
@@ -128,6 +129,8 @@ if (storedHighscores !== null) {
 // Function for High Score page
 var highScorePage = function(){
     resetScreen();
+    timeEl.style.display = "none";
+    highscoreLinkEl.style.display = "none";
     document.getElementById("highscores").style.display = "block";
     highscoresListEl.style.display = "block";
 
@@ -152,26 +155,19 @@ var resetScreen = function() {
     feedbackEl.style.display = "none";
 };
 
+// Function to submit initials and highscore
 submitBtnEl.addEventListener("click", function(event){
     event.preventDefault();
-    
     highscore = {
         score: score,
         initial: document.getElementById("initial").value,
     };
-
-    console.log(highscore);
-
     highscores.push(highscore);
-
-    console.log(highscores);
-
     localStorage.setItem("highscores",JSON.stringify(highscores));
-
-    //TODO: Check to make sure initials were entered
     highScorePage();
 });
 
+// Button on the high scores page to go back to the home screen.
 backHomeBtnEl.addEventListener("click", function(){
     resetScreen();
     secondsRemain = 75;
@@ -179,18 +175,27 @@ backHomeBtnEl.addEventListener("click", function(){
     timeEl.textContent = "Timer: " + secondsRemain;
     quizSectionEl.dataset.index = 0;
     document.getElementById("title-page").style.display = "block";
+    timeEl.style.display = "block";
+    highscoreLinkEl.style.display = "block";
     location.reload();
     return;
 });
 
+// Button on High Scores page to clear the high scores.
 clearScoresBtnEl.addEventListener("click", function(){
     localStorage.clear();
     highscoresListEl.style.display = "none";
     grabHighscores();
 });
 
+// Link at the top of the page to view the high scores.
 highscoreLinkEl.addEventListener("click", function(){
     highScorePage();
+});
+
+// Clears the feedback section when the initials input box is clicked.
+initialsEl.addEventListener("click", function(){
+    feedbackEl.style.display = "none";
 });
 
 
