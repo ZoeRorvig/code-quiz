@@ -9,14 +9,13 @@ var feedbackEl = document.querySelector(".feedback");
 var finishedPageEl = document.querySelector("#finished-page");
 var initialsEl = document.querySelector("#initial");
 var highscoresListEl = document.querySelector("#highscore-list");
-
+var highscoreLinkEl = document.querySelector("#highscore-link");
 var click = 0;
 var score = 0;
 var secondsRemain = 75;
 var timerInterval;
 var element;
 var highscore;
-
 var highscores = [];
 
 // Questions
@@ -142,8 +141,6 @@ var highScorePage = function(){
         li.setAttribute("data-index", i);
         highscoresListEl.appendChild(li);
       };
-
-    //TODO: Why duplicates?
 };
 
 // Function to clear screen
@@ -156,7 +153,7 @@ var resetScreen = function() {
 };
 
 submitBtnEl.addEventListener("click", function(event){
-    // event.preventDefault();
+    event.preventDefault();
     
     highscore = {
         score: score,
@@ -172,7 +169,6 @@ submitBtnEl.addEventListener("click", function(event){
     localStorage.setItem("highscores",JSON.stringify(highscores));
 
     //TODO: Check to make sure initials were entered
-    //TODO: sort high scores
     highScorePage();
 });
 
@@ -193,5 +189,8 @@ clearScoresBtnEl.addEventListener("click", function(){
     grabHighscores();
 });
 
+highscoreLinkEl.addEventListener("click", function(){
+    highScorePage();
+});
 
 
