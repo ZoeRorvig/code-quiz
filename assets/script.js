@@ -134,7 +134,7 @@ var countdownTimer = function() {
 // Function for All Done page
 var allDone = function (){
     document.getElementById("finished-page").style.display = "block";
-    finishedPageEl.querySelector("p").textContent = "Your final score is " + score;
+    finishedPageEl.querySelector("p").textContent = "Your final score is " + score + "!";
     questionCheck();
 };
 

@@ -29,6 +29,11 @@ h2 {
   padding: 10px;
 }
 
+#finished-page p{
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
 #highscore-list li:nth-child(2n){
   background-color: rgba(71, 145, 145, 0.353);
 }
