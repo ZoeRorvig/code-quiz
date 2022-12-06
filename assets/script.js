@@ -22,46 +22,46 @@ var highscores = [];
 var questionBank = [{
     question: "Inside which HTML element do we put the JavaScript?",
     options: ["A. <scripting>","B. <javascript>","C. <script>","D. <js>"],
-    answer: "1"
+    answer: "C"
 }, {    
-    question: "Question Text2",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "1"
+    question: "Choose the correct HTML element for the largest heading:",
+    options: ["A. <h6>","B. <heading>","C. <head>","D. <h1>"],
+    answer: "D"
 }, {    
-    question: "Question Text3",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "3"
+    question: "Which is the correct CSS syntax?",
+    options: ["A. {body;color:black;}","B. body {color: black;}","C. body:color=black;"],
+    answer: "B"
 }, {    
     question: "How do you write \"Hello World\" in an alert box?",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "2"
+    options: ["A. alert(\"Hello World\");","B. alertBox(\"Hello World\");","C. msgBox(\"Hello World\");"],
+    answer: "A"
 }, {    
-    question: "Question Text5",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "3"
+    question: "Which CSS property controls the text size?",
+    options: ["A. font-style","B. text-size","C. text-style","D. font-size"],
+    answer: "D"
 }, {    
     question: "How does a FOR loop start?",
-    options: ["A. for(i = 0; i <= 5; i++)","B. for(i<=5; i++)","C. for i = 1 to 5","D. for(i = 0; i <= 5)"],
-    answer: "2"
+    options: ["A. for(i = 0; i <= 5; i++)","B. for(i<=5; i++)","C. for i = 1 to 5"],
+    answer: "A"
 }, {    
-    question: "Question Text4",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "2"
+    question: "Which character is used to indicate an end tag?",
+    options: ["A. <","B. *","C. /","D. ^"],
+    answer: "C"
 }, {    
-    question: "Question Text4",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "2"
+    question: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    options: ["A. longdesc","B. title","C. alt","D. src"],
+    answer: "C"
 }, {    
-    question: "Question Text4",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "2"
+    question: "How do you declare a JavaScript variable?",
+    options: ["A. v carName;","B. var carName;","C. variable carName;"],
+    answer: "B"
 }, {    
-    question: "Question Text4",
-    options: ["A. O1","B. O2","C. O3","D. O4"],
-    answer: "2"
+    question: "How can you make a numbered list?",
+    options: ["A. <dl>","B. <ul>","C. <ol>","D. <list>"],
+    answer: "C"
 }];
 
-var correctAnswers = ["1","1","3","2","3","1","1","3","2","3"];
+var correctAnswers = ["C","D","B","A","D","A","C","C","B","C"];
 
 // Function to begin quiz
 startQuizBtnEl.addEventListener("click", function beginQuiz(){
@@ -93,6 +93,7 @@ var questionCheck = function(){
     } else if (check === false){
         feedbackEl.querySelector("h3").textContent = "Wrong! The correct answer was " + correctAnswers[click] + ".";
         secondsRemain -= 5;
+        score = secondsRemain;
         timeEl.textContent = "Timer: " + secondsRemain;
     }
 };
@@ -121,11 +122,10 @@ var countdownTimer = function() {
     timerInterval = setInterval(function() {
       secondsRemain--; 
       timeEl.textContent = "Timer: " + secondsRemain;
-
       if (secondsRemain === 0) {
         clearInterval(timerInterval);
-        resetScreen();
         score = secondsRemain;
+        resetScreen();
         allDone();
       }
     }, 1000); 
