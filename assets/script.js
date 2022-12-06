@@ -10,8 +10,7 @@ var finishedPageEl = document.querySelector("#finished-page");
 var initialsEl = document.querySelector("#initial");
 var highscoresListEl = document.querySelector("#highscore-list");
 var highscoreLinkEl = document.querySelector("#highscore-link");
-var click = 0;
-var score = 0;
+var cursor = 0;
 var secondsRemain = 75;
 var timerInterval;
 var element;
@@ -74,9 +73,9 @@ startQuizBtnEl.addEventListener("click", function beginQuiz(){
 // Function for showing the questions
 var questionDisplay = function() {
     quizSectionEl.style.display = "block";
-    quizSectionEl.querySelector("h2").textContent = questionBank[click].question;
+    quizSectionEl.querySelector("h2").textContent = questionBank[cursor].question;
     quizSectionEl.querySelector("#buttons").innerHTML = null;
-    for (var questionOptions of questionBank[click].options) {
+for (var questionOptions of questionBank[cursor].options) {
         var buttonEl = document.createElement("button");
         buttonEl.textContent = questionOptions;
         buttonEl.dataset.choice = questionOptions[0];
@@ -87,13 +86,12 @@ var questionDisplay = function() {
 // Function for question grading
 var questionCheck = function(){
     feedbackEl.style.display = "block";
-    var check = element.dataset.choice === correctAnswers[click];
+    var check = element.dataset.choice === correctAnswers[cursor];
     if (check === true){
         feedbackEl.querySelector("h3").textContent = "Correct!";
     } else if (check === false){
-        feedbackEl.querySelector("h3").textContent = "Wrong! The correct answer was " + correctAnswers[click] + ".";
+        feedbackEl.querySelector("h3").textContent = "Wrong! The correct answer was " + correctAnswers[cursor] + ".";
         secondsRemain -= 5;
-        score = secondsRemain;
         timeEl.textContent = "Timer: " + secondsRemain;
     }
 };
@@ -103,12 +101,11 @@ quizSectionEl.addEventListener("click", function(event){
     element = event.target;
     if (element.matches(".quiz-section button")){
         questionCheck();
-    if (click < questionBank.length - 1){
-        click++;
-        quizSectionEl.dataset.index = click;
+    if (cursor < questionBank.length - 1){
+        cursor++;
+        quizSectionEl.dataset.index = cursor;
     } else{
         resetScreen();
-        score = secondsRemain;
         clearInterval(timerInterval);
         allDone();
         return;
@@ -124,7 +121,6 @@ var countdownTimer = function() {
       timeEl.textContent = "Timer: " + secondsRemain;
       if (secondsRemain === 0) {
         clearInterval(timerInterval);
-        score = secondsRemain;
         resetScreen();
         allDone();
       }
@@ -133,9 +129,10 @@ var countdownTimer = function() {
 
 // Function for All Done page
 var allDone = function (){
-    document.getElementById("finished-page").style.display = "block";
-    finishedPageEl.querySelector("p").textContent = "Your final score is " + score + "!";
     questionCheck();
+    document.getElementById("finished-page").style.display = "block";
+    finishedPageEl.querySelector("p").textContent = "Your final score is " + secondsRemain + "!";
+    
 };
 
 // Function to grab High Scores
@@ -175,7 +172,7 @@ submitBtnEl.addEventListener("click", function(event){
         return allDone;
     }
     highscore = {
-        score: score,
+        score: secondsRemain,
         initial: document.getElementById("initial").value,
     };
     highscores.push(highscore);
@@ -187,7 +184,7 @@ submitBtnEl.addEventListener("click", function(event){
 backHomeBtnEl.addEventListener("click", function(){
     resetScreen();
     secondsRemain = 75;
-    click = 0;
+    cursor = 0;
     timeEl.textContent = "Timer: " + secondsRemain;
     quizSectionEl.dataset.index = 0;
     document.getElementById("title-page").style.display = "block";
