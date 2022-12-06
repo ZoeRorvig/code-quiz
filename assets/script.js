@@ -131,6 +131,10 @@ var countdownTimer = function() {
 var allDone = function (){
     questionCheck();
     document.getElementById("finished-page").style.display = "block";
+    if (secondsRemain < 0){
+        secondsRemain = 0;
+    }
+    timeEl.textContent = "Timer: " + secondsRemain;
     finishedPageEl.querySelector("p").textContent = "Your final score is " + secondsRemain + "!";
     
 };
